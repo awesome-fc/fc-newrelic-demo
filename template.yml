@@ -1,0 +1,19 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Transform: 'Aliyun::Serverless-2018-04-03'
+Resources:
+  fc-integrate-with-third-apm:
+    Type: 'Aliyun::Serverless::Service'
+    Properties:
+      Description: 'FC integrate with third apm'
+
+    newrelic-integration:
+      Type: 'Aliyun::Serverless::Function'
+      Properties:
+        Handler: main.handler
+        Runtime: custom
+        MemorySize: 512
+        CodeUri: './code'
+        Initializer: main.initializer
+        InitializationTimeout: 3
+        EnvironmentVariables:
+          NEW_RELIC_LICENSE_KEY: xxx
